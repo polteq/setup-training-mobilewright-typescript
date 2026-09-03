@@ -1,0 +1,12 @@
+{
+  "name": "setup-training-mobilewright-typescript",
+  "private": true,
+  "type": "module",
+  "description": "Prerequisite checker for the Mobilewright training (training-mobilewright-typescript)",
+  "scripts": {
+    "check": "node scripts/check-setup.mjs"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}
