@@ -29,7 +29,7 @@ Supported platforms: **macOS** and **Windows 11**.
 | Node.js 24+ | Runs the training repo and its tools | Yes |
 | Android Studio + SDK (`adb`, emulator, an AVD) | Run the app under test on Android | Yes |
 | Java (JDK) | Some Android SDK command-line tools | Optional |
-| Xcode Command Line Tools (macOS only) | Optional iOS addendum | Optional |
+| Xcode + iOS Simulator (macOS only) | Optional iOS addendum | Optional |
 | An IDE (VS Code recommended) | Open and run the training code | Optional (but you need one) |
 
 The course runs **Android by default**. iOS is an optional addendum and is
@@ -43,8 +43,8 @@ only relevant on macOS.
    and at least one Android Virtual Device (AVD) created in Android Studio.
 4. **Java** *(optional)* — only used by a few Android SDK command-line tools;
    not required by `mobilecli` or `mobilewright` themselves.
-5. **iOS** *(optional, macOS only)* — Xcode Command Line Tools, only needed
-   if you plan to try the optional iOS addendum.
+5. **iOS** *(optional, macOS only)* — Xcode Command Line Tools and the iOS
+   Simulator, only needed if you plan to try the optional iOS addendum.
 6. **IDE** — checks for VS Code (recommended) on `PATH` or in its usual
    install location; any IDE works, but you need one to open and run the
    training code.
@@ -80,7 +80,10 @@ Java (optional)
   ✔  JAVA_HOME = /Applications/Android Studio.app/Contents/jbr/Contents/Home
 
 iOS (macOS only, optional)
-  ✔  Command Line Tools, /Library/Developer/CommandLineTools
+  ✔  Command Line Tools, /Applications/Xcode.app/Contents/Developer
+  ✔  iOS Simulator found. Available devices:
+       iPhone 17 Pro (...) (Shutdown)
+       ...and 9 more
 
 IDE
   ✔  VS Code 1.135.0
@@ -96,6 +99,8 @@ All checks passed! Your machine is ready for the Mobilewright training.
 | `No Android Virtual Devices (AVDs) found` | Open Android Studio → Device Manager → Create Device. |
 | Script can't find `adb`/`emulator` after installing Android Studio | Restart your terminal (Windows) or open a new shell (macOS) so the updated `PATH`/env vars are picked up. |
 | VS Code not found | Install from https://code.visualstudio.com/, or use any other IDE — it's not enforced. |
+| `iOS Simulator not found` | Command Line Tools alone aren't enough — install full Xcode from the App Store, then open it once. See [docs/ios-optional.md](docs/ios-optional.md). |
+| `no iOS Simulator runtimes are installed` | Open Xcode → Settings → Platforms and install an iOS simulator runtime. |
 
 ## What this project installs
 

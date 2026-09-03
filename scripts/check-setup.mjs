@@ -327,6 +327,31 @@ if (IS_MAC) {
       info('Install with: xcode-select --install');
     }
   });
+
+  await check('iOS Simulator', () => {
+    const list = run('xcrun simctl list devices available');
+    if (list === null) {
+      warn('iOS Simulator not found (only needed for the optional iOS addendum)');
+      const xcodePath = run('xcode-select -p');
+      if (xcodePath && xcodePath.includes('CommandLineTools')) {
+        info('Command Line Tools alone don\'t include the Simulator.');
+      }
+      info('Install Xcode from the App Store (it bundles the Simulator), then open it once to finish setup.');
+      return;
+    }
+    const devices = list
+      .split('\n')
+      .map((l) => l.trim())
+      .filter((l) => l && !l.startsWith('==') && !l.startsWith('--'));
+    if (devices.length === 0) {
+      warn('Xcode found, but no iOS Simulator runtimes are installed (only needed for the optional iOS addendum)');
+      info('Open Xcode -> Settings -> Platforms and install an iOS simulator runtime.');
+      return;
+    }
+    ok('iOS Simulator found. Available devices:');
+    devices.slice(0, 5).forEach((d) => info(`  ${d}`));
+    if (devices.length > 5) info(`  ...and ${devices.length - 5} more`);
+  });
 } else {
   info('Skipped on this platform. The course runs Android by default.');
 }

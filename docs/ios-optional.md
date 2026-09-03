@@ -10,17 +10,27 @@ main training.
 xcode-select --install
 ```
 
-This installs enough tooling (`xcrun`, `simctl`, etc.) for `mobilecli` to
-drive the iOS Simulator. A full Xcode install is not required for the
-addendum.
+This gives you `xcrun`, `git`, etc. — enough for most of the training.
+
+## Install Xcode (needed for the iOS Simulator)
+
+The Simulator app and its device runtimes only ship with the full **Xcode**,
+not the Command Line Tools. Install it from the
+[Mac App Store](https://apps.apple.com/app/xcode/id497799835), then open it
+once and let it finish its first-run setup (installs the default simulator
+runtime).
+
+To add more device/OS versions later: Xcode → Settings → Platforms.
 
 ## Verify
 
 ```bash
 xcode-select -p
+xcrun simctl list devices available
 ```
 
-Should print a path such as `/Library/Developer/CommandLineTools` or
-`/Applications/Xcode.app/Contents/Developer`.
+The first should print a path such as
+`/Applications/Xcode.app/Contents/Developer`. The second should list at
+least one iPhone simulator.
 
 Then re-run `npm run check` from this project.
